@@ -7,6 +7,13 @@ App.welcome = App.cable.subscriptions.create "WelcomeChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
+    alert data['message']
 
-  speak: ->
-    @perform 'speak'
+  speak: (message)->
+    @perform 'speak', message: message
+
+$(document).on 'keypress', '[data-behavior~=room_speaker]', (e) ->
+  if e.keyCode id 13 # return = send
+    App.welcome.speak e.target.value
+    e.target.value = ''
+    e.preventDefault()
