@@ -1,0 +1,20 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password: root
+  host: localhost
+  port: 3306
+
+development:
+  <<: *default
+  database: action_cable_dev
+
+test:
+  <<: *default
+  database: action_cable_test
+
+production:
+  <<: *default
+  database: action_cable_pro
